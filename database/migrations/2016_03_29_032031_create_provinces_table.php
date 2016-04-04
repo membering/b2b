@@ -14,6 +14,7 @@ class CreateProvincesTable extends Migration
     {
         Schema::create('provinces', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('country_id')->unsigned();
             $table->string('name')->nullable();
             $table->integer('code')->nullable();
             $table->tinyInteger('status')->default(1);

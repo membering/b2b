@@ -14,7 +14,20 @@ class CreateCountriesTable extends Migration
     {
         Schema::create('countries', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
+            $table->string('name');
+            $table->string('iso2', 2);
+            $table->string('iso3', 3);
+            $table->integer('e164');
+            $table->tinyInteger('status')->default(1);
+//            $table->timestamps();
+        });
+
+        Schema::table('user_profiles', function (Blueprint $table) {
+            $table->foreign('country_id')->references('id')->on('countries');
+        });
+
+        Schema::table('provinces', function (Blueprint $table) {
+            $table->foreign('country_id')->references('id')->on('countries');
         });
     }
 

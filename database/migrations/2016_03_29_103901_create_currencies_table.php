@@ -18,6 +18,8 @@ class CreateCurrenciesTable extends Migration
             $table->string('code', 3);
             $table->string('symbol', 12);
             $table->tinyInteger('side');
+            $table->tinyInteger('decimal_place');
+            $table->float('value');
             $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });
