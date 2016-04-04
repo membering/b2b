@@ -22,6 +22,7 @@ class CreateUserProfilesTable extends Migration
             $table->string('phone', 20)->nullable();
             $table->integer('country_id')->unsigned();
             $table->integer('province_id')->unsigned();
+            $table->integer('district_id')->unsigned();
             $table->integer('ward_id')->unsigned();
             $table->timestamps();
 

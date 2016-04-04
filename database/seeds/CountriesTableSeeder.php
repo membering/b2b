@@ -14,13 +14,20 @@ class CountriesTableSeeder extends Seeder
     {
         $file = storage_path('app/countrycode.csv');
         $excel = Excel::load($file)->get()->toArray();
+        $data = [];
         foreach ($excel as $value) {
-            DB::table('countries')->insert([
+            array_push($data, [
                 'name' => $value['country_name'],
                 'iso2' => $value['iso2'],
                 'iso3' => $value['iso3'],
                 'e164' => $value['e164']
             ]);
         }
+        foreach(array_chunk($data, 100) as $value) {
+            DB::table('countries')->insert($value);
+        }
+        unset($file);
+        unset($excel);
+        unset($data);
     }
 }

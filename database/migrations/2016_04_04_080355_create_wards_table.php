@@ -14,15 +14,15 @@ class CreateWardsTable extends Migration
     {
         Schema::create('wards', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name')->nullable();
-            $table->integer('code')->nullable();
-            $table->integer('province_id')->unsigned();
+            $table->string('name');
+            $table->string('code');
+            $table->integer('district_id')->unsigned();
             $table->tinyInteger('status')->default(1);
 //            $table->timestamps();
         });
 
         Schema::table('wards', function (Blueprint $table) {
-            $table->foreign('province_id')->references('id')->on('provinces');
+            $table->foreign('district_id')->references('id')->on('districts');
         });
 
         Schema::table('user_profiles', function (Blueprint $table) {
